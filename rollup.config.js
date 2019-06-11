@@ -1,6 +1,8 @@
-import typescript from 'rollup-plugin-typescript';
-import node_resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import livereload from 'rollup-plugin-livereload';
+import node_resolve from 'rollup-plugin-node-resolve';
+import serve from 'rollup-plugin-serve';
+import typescript from 'rollup-plugin-typescript';
 
 export default {
   input: './src/main.ts',
@@ -12,5 +14,7 @@ export default {
     node_resolve(),
     commonjs(),
     typescript(),
+    serve(),
+    livereload(),
   ]
 };

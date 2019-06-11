@@ -1,5 +1,7 @@
 import {create_engine, create_scene} from './babylon';
 
+console.log('hello world!');
+
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 
 const engine = create_engine(canvas);
