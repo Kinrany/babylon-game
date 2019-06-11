@@ -8,7 +8,7 @@ export function create_engine(canvas: HTMLCanvasElement): Babylon.Engine {
 export function create_scene(engine: Babylon.Engine): Babylon.Scene {
   const canvas = engine.getRenderingCanvas();
   if (!canvas) {
-    throw new Error('Babylon.Engine should have an associated canvas');
+    throw new Error('Engine should have an associated canvas');
   }
 
   const scene = new Babylon.Scene(engine);
