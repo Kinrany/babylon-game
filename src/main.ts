@@ -8,3 +8,7 @@ const engine = create_engine(canvas);
 const scene = create_scene(engine);
 engine.runRenderLoop(() => scene.render());
 window.addEventListener('resize', () => engine.resize());
+
+import shape_test from './shape-test';
+
+shape_test();
