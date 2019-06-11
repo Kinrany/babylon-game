@@ -1,14 +1,20 @@
-interface EnumInstance<TTag, TValue> {
-  tag: TTag;
-  value: TValue;
-}
+type KeyType = string | number | symbol;
 
-interface EnumConstructor<TTAg, TValue> {
-  (value: TValue): EnumInstance<TTAg, TValue>;
-}
+class EnumInstance<TTag extends KeyType, TValue> {
+  constructor(
+    readonly tag: TTag,
+    readonly value: TValue
+  ) {}
+
+  match(fns: Record<TTag, (value: TValue) => void>): void {
+    fns[this.tag](this.value);
+  }
+};
+
+type EnumConstructor<TTag extends KeyType, TValue> = (value: TValue) => EnumInstance<TTag, TValue>;
 
 function create_enum_constructor<TMap, TTag extends keyof TMap>(tag: TTag): EnumConstructor<TTag, TMap[TTag]> {
-  return <TValue extends TMap[TTag]>(value: TValue) => ({tag, value});
+  return <TValue extends TMap[TTag]>(value: TValue) => new EnumInstance(tag, value);
 }
 
 type EnumNamespace<TMap> = {

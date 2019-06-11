@@ -8,20 +8,14 @@ export default function shape_test() {
 
   const shapes: Shape[] = [unit, point, circle, triangle];
 
+  const log = (name: string) => (value: unknown) => console.log(`${name}: ${value}`);
+
   for (const shape of shapes) {
-    switch (shape.tag) {
-      case 'Unit':
-        console.log(`Unit: ${shape.value}`);
-        break;
-      case 'Point':
-        console.log(`Point: ${shape.value}`);
-        break;
-      case 'Circle':
-        console.log(`Circle: ${shape.value}`);
-        break;
-      case 'Triangle':
-        console.log(`Triangle: ${shape.value}`);
-        break;
-    }
+    shape.match({
+      Unit: log('Unit'),
+      Point: log('Point'),
+      Circle: log('Circle'),
+      Triangle: log('Triangle'),
+    });
   }
 }
